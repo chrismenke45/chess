@@ -13,7 +13,8 @@ class Board
   private
 
   def create_empty_board
-    column_index = *(1..8)
+    ("a".."h").to_a
+    column_index = ("a".."h").to_a
     column_index.unshift(" ")
     intermediate_board_arr = []
     8.times do |index|

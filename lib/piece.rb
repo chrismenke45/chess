@@ -6,6 +6,6 @@ module Piece
   end
 
   def on_board?(move)
-    move[0] < BOARD_SIZE && move[0] >= 0 && move[1] < BOARD_SIZE && move[1] >= 0
+    move[0] <= BOARD_SIZE && move[0] > 0 && move[1] <= BOARD_SIZE && move[1] > 0
   end
 end
