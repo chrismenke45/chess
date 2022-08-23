@@ -1,1 +1,1 @@
-In this project I will make command line chess.  I'm excited to work with rspec to build with test driven development. 
+In this project I will make command line chess.  I'm excited to work with rspec to test my methods.
