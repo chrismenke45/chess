@@ -1,3 +1,3 @@
 class Rook
-  UNCODE = "u\2656"
+  UNCODE = "\u2656"
 end

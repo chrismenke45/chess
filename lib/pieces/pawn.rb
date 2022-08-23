@@ -1,3 +1,3 @@
 class Pawn
-  UNCODE = "u\2659"
+  UNCODE = "\u2659"
 end

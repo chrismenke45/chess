@@ -1,3 +1,3 @@
 class Bishop
-  UNCODE = "u\2657"
+  UNCODE = "\u2657"
 end

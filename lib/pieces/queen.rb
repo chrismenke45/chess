@@ -1,3 +1,3 @@
 class Queen
-  UNCODE = "u\2655"
+  UNCODE = "\u2655"
 end

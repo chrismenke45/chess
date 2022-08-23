@@ -1,3 +1,3 @@
 class Knight
-  UNCODE = "u\2658"
+  UNCODE = "\u2658"
 end
