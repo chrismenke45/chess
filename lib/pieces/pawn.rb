@@ -1,3 +1,14 @@
+require "./lib/piece.rb"
+
 class Pawn
-  UNCODE = "\u2659"
+  UNICODE = "\u2659"
+
+  attr_reader :team
+
+  include Piece
+
+  def initialize(team)
+    @team = team
+    @unmoved = true
+  end
 end

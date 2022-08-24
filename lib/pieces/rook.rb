@@ -1,3 +1,7 @@
 class Rook
-  UNCODE = "\u2656"
+  UNICODE = "\u2656"
+
+  attr_reader :team
+
+  include Piece
 end

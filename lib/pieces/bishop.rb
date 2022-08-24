@@ -1,3 +1,7 @@
 class Bishop
-  UNCODE = "\u2657"
+  UNICODE = "\u2657"
+
+  attr_reader :team
+
+  include Piece
 end

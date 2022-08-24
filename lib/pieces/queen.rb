@@ -1,3 +1,7 @@
 class Queen
-  UNCODE = "\u2655"
+  UNICODE = "\u2655"
+
+  attr_reader :team
+
+  include Piece
 end
