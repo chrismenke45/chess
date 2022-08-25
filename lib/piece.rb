@@ -15,11 +15,27 @@ module Piece
     @team == "black" ? self.class::UNICODE.black : self.class::UNICODE
   end
 
-  def show_team
-    puts @team
-  end
-
   def initialize(team)
     @team = team
+  end
+
+  def move_in_direction(position, direction)
+    moves = []
+    x_incr = direction[0]
+    y_incr = direction[1]
+    while on_board?([position[0] + x_incr, position[1] + y_incr])
+      moves << [position[0] + x_incr, position[1] + y_incr]
+      x_incr += direction[0]
+      y_incr += direction[1]
+    end
+    moves
+  end
+
+  def into_other_piece?(move, board)
+    board[move[0]][move[1]] != nil
+  end
+
+  def into_friendly_piece?(move, board)
+    board[move[0]][move[1]].team == self.team
   end
 end

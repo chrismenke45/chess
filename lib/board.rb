@@ -45,29 +45,14 @@ class Board
     the_board
   end
 
-  def create_empty_boardlll
-    ("a".."h").to_a
-    column_index = ("a".."h").to_a
-    column_index.unshift(" ")
-    intermediate_board_arr = []
-    8.times do |index|
-      if index == 1 || index == 6
-        intermediate_board_arr.push([index + 1] + Array.new(8) { Pawn.new("white") })
-      else
-        intermediate_board_arr.push([index + 1] + Array.new(8) { "_" })
-      end
-    end
-    intermediate_board_arr.unshift(column_index)
-    intermediate_board_arr
-  end
-
   def create_empty_board
     ("a".."h").to_a
     column_index = ("a".."h").to_a
     column_index.unshift(" ")
     intermediate_board_arr = []
     8.times do |index|
-      intermediate_board_arr.push([index + 1] + Array.new(8) { "_" })
+      #intermediate_board_arr.push([index + 1] + Array.new(8) { "_" })
+      intermediate_board_arr.push([index + 1] + Array.new(8) { nil })
     end
     intermediate_board_arr.unshift(column_index)
     intermediate_board_arr
