@@ -11,26 +11,26 @@ require "./lib/pieces/bishop.rb"
 require "./lib/pieces/queen.rb"
 require "./lib/pieces/king.rb"
 
-pawn = Pawn.new("white")
+pawn = Pawn.new("black")
 
-p pawn.possible_moves([1, 2])
+p pawn.possible_moves([6, 2], b.board)
 
 knight = Knight.new("black")
 
-p knight.possible_moves([1, 2])
+#p knight.possible_moves([6, 2], b.board)
 
-rook = Rook.new("black")
+#rook = Rook.new("black")
 
-p rook.possible_moves([1, 2])
+#p rook.possible_moves([3, 3], b.board)
 
 bishop = Bishop.new("black")
 
-p bishop.possible_moves([8, 3])
+#p bishop.possible_moves([3, 3], b.board)
 
 queen = Queen.new("black")
 
-p queen.possible_moves([1, 2])
+#p queen.possible_moves([3, 3], b.board)
 
 king = King.new("black")
 
-p king.possible_moves([8, 3])
+#p king.possible_moves([6, 3], b.board)

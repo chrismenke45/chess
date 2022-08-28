@@ -8,6 +8,8 @@ require "./lib/piece.rb"
 require "./lib/string.rb"
 
 class Board
+  attr_reader :board
+
   def initialize
     @board = new_game_board
   end

@@ -12,10 +12,18 @@ class Pawn
     @unmoved = true
   end
 
-  def possible_moves(position)
+  def possible_moves(position, board)
     multiplier = @team == "white" ? -1 : 1
-    moves = [[position[0], position[1] + 1 * multiplier]]
-    moves << [position[0], position[1] + 2 * multiplier] if @unmoved
+    moves = {
+      passive: [],
+      offensive: [],
+    }
+    unless into_other_piece?([position[0] + 1 * multiplier, position[1]], board)
+      moves[:passive] << [position[0] + 1 * multiplier, position[1]] if on_board?([position[0] + 1 * multiplier, position[1]])
+      moves[:passive] << [position[0] + 2 * multiplier, position[1]] if @unmoved && !into_other_piece?([position[0] + 2 * multiplier, position[1]], board)
+    end
+    moves[:offensive] << [position[0] + 1 * multiplier, position[1] + 1] if on_board?([position[0] + 1 * multiplier, position[1] + 1]) && into_enemy_piece?([position[0] + 1 * multiplier, position[1] + 1], board)
+    moves[:offensive] << [position[0] + 1 * multiplier, position[1] - 1] if on_board?([position[0] + 1 * multiplier, position[1] - 1]) && into_enemy_piece?([position[0] + 1 * multiplier, position[1] - 1], board)
     moves
   end
 end
