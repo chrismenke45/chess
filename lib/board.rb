@@ -36,6 +36,38 @@ class Board
     end
   end
 
+  def check_values(team)
+    #defending_king = @board.find { |item| item.class == King && item.team == team }
+    #
+    #
+    danger_positions = []
+    @board.each_with_index do |row, row_index|
+      next if row_index == 0
+      row.each_with_index do |space, column_index|
+        next if space.nil? || space.is_a?(Integer) || space.team == team
+        moves = space.possible_moves([row_index, column_index], @board)
+        danger_positions << [row_index, column_index] if moves[:offensive].include?([king_position])
+      end
+    end
+    danger_positions.empty? ? false : danger_positions
+  end
+
+  def check_mate?(danger_positions, team)
+    #MOVE defending king possible to not be checked
+    #defending_king =
+    if danger_positions.length == 1
+      @board.each_with_index do |row, row_index|
+        next if row_index == 0
+        row.each_with_index do |space, column_index|
+          next if space.nil? || space.is_a?(Integer) || space.team != team
+          moves = space.possible_moves([row_index, column_index], @board)
+          return true if moves[:offensive].include?(danger_positions)
+        end
+      end
+    end
+    #check if moving other pieces would prevent check
+  end
+
   private
 
   def new_game_board
