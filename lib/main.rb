@@ -35,4 +35,4 @@ king = King.new("black")
 
 #p king.possible_moves([6, 3], b.board)
 
-b.check_values("black")
+#b.check_values("black")

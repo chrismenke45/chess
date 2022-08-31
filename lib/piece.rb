@@ -33,7 +33,7 @@ module Piece
         moves[:offensive] << [position[0] + y_incr, position[1] + x_incr] unless into_friendly_piece?([position[0] + y_incr, position[1] + x_incr], board)
         break
       else
-        moves[:passive] << [position[0] + x_incr, position[1] + y_incr]
+        moves[:passive] << [position[0] + y_incr, position[1] + x_incr]
         x_incr += direction[1]
         y_incr += direction[0]
       end

@@ -26,4 +26,8 @@ class Pawn
     moves[:offensive] << [position[0] + 1 * multiplier, position[1] - 1] if on_board?([position[0] + 1 * multiplier, position[1] - 1]) && into_enemy_piece?([position[0] + 1 * multiplier, position[1] - 1], board)
     moves
   end
+
+  def moved
+    @unmoved = false
+  end
 end
