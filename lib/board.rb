@@ -8,7 +8,7 @@ require "./lib/piece.rb"
 require "./lib/string.rb"
 
 class Board
-  attr_reader :board
+  attr_accessor :board
 
   def initialize
     @board = new_game_board
@@ -36,21 +36,25 @@ class Board
     end
   end
 
-  #def check_values(team)
-  #defending_king = @board.find { |item| item.class == King && item.team == team }
-  #
-  #
-  # danger_positions = []
-  #@board.each_with_index do |row, row_index|
-  # next if row_index == 0
-  #row.each_with_index do |space, column_index|
-  # next if space.nil? || space.is_a?(Integer) || space.team == team
-  #moves = space.possible_moves([row_index, column_index], @board)
-  #danger_positions << [row_index, column_index] if moves[:offensive].include?([king_position])
-  #end
-  #end
-  #danger_positions.empty? ? false : danger_positions
-  #end
+  def check_values(team)
+    defending_king = self.king_position(team)
+
+    danger_positions = []
+    #@board.each_with_index do |row, row_index|
+    #next if row_index == 0
+    #row.each_with_index do |space, column_index|
+    # next if space.nil? || space.is_a?(Integer) || space.team == team
+    #moves = space.possible_moves([row_index, column_index], @board)
+    #danger_positions << [row_index, column_index] if moves[:offensive].include?([king_position])
+    #end
+    #end
+    self.each_space do |space, row_index, column_index|
+      next if space.nil? || row_index == 0 || space.is_a?(Integer) || space.team == team
+      moves = space.possible_moves([row_index, column_index], @board)
+      danger_positions << [row_index, column_index] if moves[:offensive].include?(defending_king)
+    end
+    danger_positions.empty? ? false : danger_positions
+  end
 
   #def check_mate?(danger_positions, team)
   #MOVE defending king possible to not be checked
@@ -67,6 +71,16 @@ class Board
   # end
   #check if moving other pieces would prevent check
   #end
+
+  def king_position(team)
+    self.each_space { |space, row_index, column_index| return [row_index, column_index] if space.class == King && space.team == team }
+  end
+
+  def each_space(&the_block)
+    @board.each_with_index do |row, row_index|
+      row.each_with_index { |space, column_index| the_block.call(space, row_index, column_index) }
+    end
+  end
 
   private
 
