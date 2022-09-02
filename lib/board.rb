@@ -36,8 +36,8 @@ class Board
     end
   end
 
-  def check_values(team)
-    defending_king = self.king_position(team)
+  def check_values(team, defending_king)
+    #defending_king = self.king_position(team)
 
     danger_positions = []
     #@board.each_with_index do |row, row_index|
