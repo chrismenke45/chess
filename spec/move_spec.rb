@@ -27,6 +27,11 @@ describe Board do
     it "returns proper moves for whitw pawn that can attack" do
       expect(dummy_class_white.possible_moves([3, 2], board_class.board)).to include(:passive => []).and include(:offensive => match_array([[2, 1], [2, 3]]))
     end
+    subject(:dummy_class_white) { described_class.new("white") }
+    it "returns proper moves for whitw pawn that can attack" do
+      board_class.board[6][2] = Pawn.new("black")
+      expect(dummy_class_white.possible_moves([7, 2], board_class.board)).to include(:passive => []).and include(:offensive => match_array([]))
+    end
   end
   describe Bishop do
     subject(:dummy_class) { described_class.new("black") }
