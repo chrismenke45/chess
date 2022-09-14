@@ -72,6 +72,12 @@ describe Board do
       defending_king = board_class.king_position("black")
       expect(board_class.check_mate?(defending_king, "black", check_location)).to be_falsy
     end
+    it "returns false if danger position piece and be killed by another piece PT2" do
+      board_class.board[3][6] = Knight.new("white")
+      check_location = board_class.check_values(board_class.king_position("black"), "black")
+      defending_king = board_class.king_position("black")
+      expect(board_class.check_mate?(defending_king, "black", check_location)).to be_falsy
+    end
     it "check_mate returns false when 2 pieces have king in check but king can move out of way" do
       board_class.board[3][3], board_class.board[1][5] = board_class.board[1][5], nil
       board_class.board[5][3] = Rook.new("white")
@@ -121,6 +127,19 @@ describe Board do
       check_location = board_class.check_values(board_class.king_position("black"), "black")
       defending_king = board_class.king_position("black")
       expect(board_class.check_mate?(defending_king, "black", check_location)).to be_truthy
+    end
+    it "check_mate returns true when a piece has king in check mate and king cant kill piece bc it would go back to check" do
+      board_class.board[1][4], board_class.board[1][6] = nil, nil
+      board_class.board[1][7] = nil
+      board_class.board[2][5] = Queen.new("white")
+      board_class.board[5][8] = Bishop.new("white")
+      check_location = board_class.check_values(board_class.king_position("black"), "black")
+      defending_king = board_class.king_position("black")
+      expect(board_class.check_mate?(defending_king, "black", check_location)).to be_truthy
+    end
+  end
+  context "#move_no_check?" do
+    it "king move isnt allowed if it keeps it in check" do
     end
   end
 end

@@ -7,9 +7,10 @@ class Pawn
 
   include Piece
 
-  def initialize(team)
-    @team = team
-    @unmoved = true
+  def initialize(team, unmoved = true)
+    #@team = team
+    Piece.instance_method(:initialize).bind(self).call(team)
+    @unmoved = unmoved
   end
 
   def possible_moves(position, board)
@@ -29,5 +30,11 @@ class Pawn
 
   def moved
     @unmoved = false
+  end
+
+  def to_object
+    the_object = Piece.instance_method(:to_object).bind(self).call
+    the_object[:unmoved] = @unmoved
+    the_object
   end
 end

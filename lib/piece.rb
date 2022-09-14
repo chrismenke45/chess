@@ -5,6 +5,13 @@ module Piece
 
   attr_reader :team
 
+  def to_object
+    the_object = {
+      team: @team,
+      piece_type: self.class::UNICODE,
+    }
+  end
+
   def valid_move?(move, possible_moves)
     possible_moves.include?(move) && on_board?(move)
   end
@@ -42,7 +49,8 @@ module Piece
   end
 
   def into_other_piece?(move, board)
-    board[move[0]][move[1]] != nil
+    #board[move[0]][move[1]] != nil
+    board.dig(move[0], move[1]) != nil
   end
 
   def into_friendly_piece?(move, board)

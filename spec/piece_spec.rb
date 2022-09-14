@@ -3,7 +3,7 @@ describe Piece do
   let(:dummy_class) { Class.new { extend Piece } }
   describe "#valid_move?"
   it "returns true when move is allowed" do
-    expect(dummy_class.valid_move?([0, 5], [[1, 3], [4, 2], [5, 2], [0, 5]])).to be_truthy
+    expect(dummy_class.valid_move?([1, 5], [[1, 3], [4, 2], [5, 2], [1, 5]])).to be_truthy
   end
 
   it "returns false when move isnt allowed move" do
