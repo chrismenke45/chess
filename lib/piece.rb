@@ -49,7 +49,6 @@ module Piece
   end
 
   def into_other_piece?(move, board)
-    #board[move[0]][move[1]] != nil
     board.dig(move[0], move[1]) != nil
   end
 
